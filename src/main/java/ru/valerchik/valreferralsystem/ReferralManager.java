@@ -78,12 +78,14 @@ public class ReferralManager {
         return maxReferralTimes;
     }
 
+    // Оптимизированный метод: возвращает 1 если игрок уже чей-то реферал, иначе 0
     public int getReferralTimes(Player player) {
-        int count = 0;
-        for (UUID uuid : referrals.keySet()) {
-            if (uuid.equals(player.getUniqueId())) count++;
-        }
-        return count;
+        return referrals.containsKey(player.getUniqueId()) ? 1 : 0;
+    }
+
+    // Альтернативный булевый метод (если нужно)
+    public boolean hasBeenReferred(Player player) {
+        return referrals.containsKey(player.getUniqueId());
     }
 
     public boolean canBeReferred(Player player) {
