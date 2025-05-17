@@ -103,7 +103,7 @@ public class ReferralManager {
         saveReferrals();
 
         giveReward(referrer, referral, plugin.getConfig().getStringList("rewards.referrer"));
-        giveReward(referral, referrer, plugin.getConfig().getStringList("rewards.referral"));
+        giveReward(referrer, referral, plugin.getConfig().getStringList("rewards.referral"));
 
         return true;
     }
@@ -120,9 +120,9 @@ public class ReferralManager {
                 .replace("%referral_uuid%", referral.getUniqueId().toString());
     }
 
-    private void giveReward(Player main, Player other, List<String> commands) {
+    private void giveReward(Player referrer, Player referral, List<String> commands) {
         for (String cmd : commands) {
-            String parsed = parsePlaceholders(cmd, main, other);
+            String parsed = parsePlaceholders(cmd, referrer, referral);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), parsed);
         }
     }
