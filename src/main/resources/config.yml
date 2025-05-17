@@ -1,0 +1,31 @@
+messages:
+  invalidUsage: "&cИспользование: /ref <игрок> | /ref look <игрок> | /ref list | /ref info"
+  invalidReferrer: "&cУказанный реферер не найден или не имеет прав."
+  alreadyReferred: "&cВы уже являетесь рефералом кого-то."
+  referralSuccess: "&aВы успешно стали рефералом {referrer}!"
+  referralFailed: "&cНе удалось добавить реферал."
+  referralAdded: "&aУ вас новый реферал: {player}!"
+  playerNotFound: "&cИгрок не найден."
+  noReferralPermission: "&cЭтот игрок не может иметь рефералов."
+  referralCount: "&aУ игрока {player} {count} рефералов."
+  cannotReferSelf: "&cВы не можете стать рефералом самого себя."
+  pluginReloaded: "&aКонфигурация плагина успешно перезагружена."
+  noPermission: "&cУ вас нет прав для выполнения этой команды."
+  maxReferralsReached: "&cУ этого игрока уже максимальное количество рефералов."
+  maxReferralTimesReached: "&cВы уже использовали реферальную систему максимальное количество раз."
+  yourReferrer: "&aВаш реферер: {referrer}"
+  noReferrer: "&cУ вас нет реферера."
+  yourReferrals: "&aВаши рефералы: {referrals}"
+  noReferrals: "&cУ вас нет рефералов."
+
+settings:
+  maxReferrals: 5 # Сколько рефералов может иметь один игрок
+  maxReferralTimes: 1 # Сколько раз игрок может быть рефералом
+
+rewards:
+  referrer:
+    - "give {referrer} diamond 1"
+    - "money give {referrer} 1000"
+  referral:
+    - "give {referral} iron_sword 1"
+    - "money give {referral} 500"

@@ -1,0 +1,24 @@
+name: ValReferralSystem
+version: '1.1'
+author: valerchik123
+main: ru.valerchik.valreferralsystem.ValReferralSystem
+api-version: '1.16'
+
+commands:
+  ref:
+    description: Управление рефералами
+    usage: /ref <игрок> | /ref look <игрок> | /ref list | /ref info
+  refreload:
+    description: Перезагрузка конфигурации плагина
+    usage: /refreload
+
+permissions:
+  ref.use:
+    description: Использовать команды /ref
+    default: true
+  ref.ref:
+    description: Быть реферером
+    default: true
+  ref.reload:
+    description: Перезагружать конфиг
+    default: op
