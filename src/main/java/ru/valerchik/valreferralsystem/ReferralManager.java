@@ -102,40 +102,27 @@ public class ReferralManager {
         referrals.put(referral.getUniqueId(), referrer.getUniqueId());
         saveReferrals();
 
-        giveRewardToReferrer(referrer, referral);
-        giveRewardToReferral(referral, referrer);
+        giveReward(referrer, referral, plugin.getConfig().getStringList("rewards.referrer"));
+        giveReward(referral, referrer, plugin.getConfig().getStringList("rewards.referral"));
 
         return true;
     }
 
-    public void giveRewardToReferrer(Player referrer, Player referral) {
-        List<String> commands = plugin.getConfig().getStringList("rewards.referrer");
-        for (String cmd : commands) {
-            String parsed = cmd
-                    .replace("{referrer}", referrer.getName())
-                    .replace("{referral}", referral.getName())
-                    .replace("{referrer_uuid}", referrer.getUniqueId().toString())
-                    .replace("{referral_uuid}", referral.getUniqueId().toString())
-                    .replace("%referrer%", referrer.getName())
-                    .replace("%referral%", referral.getName())
-                    .replace("%referrer_uuid%", referrer.getUniqueId().toString())
-                    .replace("%referral_uuid%", referral.getUniqueId().toString());
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), parsed);
-        }
+    private String parsePlaceholders(String cmd, Player referrer, Player referral) {
+        return cmd
+                .replace("{referrer}", referrer.getName())
+                .replace("{referral}", referral.getName())
+                .replace("{referrer_uuid}", referrer.getUniqueId().toString())
+                .replace("{referral_uuid}", referral.getUniqueId().toString())
+                .replace("%referrer%", referrer.getName())
+                .replace("%referral%", referral.getName())
+                .replace("%referrer_uuid%", referrer.getUniqueId().toString())
+                .replace("%referral_uuid%", referral.getUniqueId().toString());
     }
 
-    public void giveRewardToReferral(Player referral, Player referrer) {
-        List<String> commands = plugin.getConfig().getStringList("rewards.referral");
+    private void giveReward(Player main, Player other, List<String> commands) {
         for (String cmd : commands) {
-            String parsed = cmd
-                    .replace("{referrer}", referrer.getName())
-                    .replace("{referral}", referral.getName())
-                    .replace("{referrer_uuid}", referrer.getUniqueId().toString())
-                    .replace("{referral_uuid}", referral.getUniqueId().toString())
-                    .replace("%referrer%", referrer.getName())
-                    .replace("%referral%", referral.getName())
-                    .replace("%referrer_uuid%", referrer.getUniqueId().toString())
-                    .replace("%referral_uuid%", referral.getUniqueId().toString());
+            String parsed = parsePlaceholders(cmd, main, other);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), parsed);
         }
     }
